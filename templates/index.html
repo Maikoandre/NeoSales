@@ -3,16 +3,33 @@
 
 {% block content %}
 <main class="d-flex justify-content-center">
-  <div class="main-panel">
+  <div class="main-panel w-100">
     <div class="container-fluid content-wrapper">
+
+      <!-- Header Section -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="fw-bold mb-0">Dashboard Overview</h2>
+            <div class="d-flex">
+              <button class="btn btn-sm btn-primary">
+                <a href="{% url 'register_orders' %}"></a>New Order
+              </button>
+            </div>
+          </div>
+          <p class="text-muted">Welcome back! Here's what's happening with your store today.</p>
+        </div>
+      </div>
 
       <!-- KPI + Chart Row -->
       <div class="row g-4">
         <!-- Chart -->
-        <div class="col-lg-6 h-100">
+        <div class="col-lg-7 h-100">
           <div class="card shadow-sm border-0 h-100">
-            <div class="card-body">
+            <div class="card-header bg-transparent border-0 pt-4 pb-0">
               <h4 class="card-title mb-3">Products per Category</h4>
+            </div>
+            <div class="card-body pt-0">
               <div style="height:300px;">
                 <canvas id="pieChart"></canvas>
               </div>
@@ -21,82 +38,62 @@
         </div>
 
         <!-- KPIs -->
-        <div class="col-lg-6">
+        <div class="col-lg-5">
           <div class="row g-4">
             <div class="col-md-6 h-100">
-              <div class="card shadow-sm border-0 h-100">
+              <div class="card shadow-sm border-0 h-100 kpi-card">
                 <div class="card-body d-flex align-items-center">
-                  <div class="icon bg-primary text-white rounded-circle me-3 p-3">
-                    <i class="fas fa-box"></i>
+                  <div class="icon bg-primary bg-opacity-10 text-primary rounded-circle me-3 p-3">
                   </div>
                   <div>
-                    <p class="mb-1 text-muted">Total Products</p>
-                    <h4 class="mb-0">{{ total_products }}</h4>
+                    <p class="mb-1 text-muted small">Total Products</p>
+                    <h3 class="mb-0">{{ total_products }}</h3>
+                    <p class="mb-0 text-success small mt-1">
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-6 h-100">
-              <div class="card shadow-sm border-0 h-100">
+              <div class="card shadow-sm border-0 h-100 kpi-card">
                 <div class="card-body d-flex align-items-center">
-                  <div class="icon bg-success text-white rounded-circle me-3 p-3">
-                    <i class="fas fa-layer-group"></i>
+                  <div class="icon bg-info bg-opacity-10 text-info rounded-circle me-3 p-3">
                   </div>
                   <div>
-                    <p class="mb-1 text-muted">Top Category</p>
-                    <h4 class="mb-0">{{ top_category }}</h4>
+                    <p class="mb-1 text-muted small">Total Orders</p>
+                    <h3 class="mb-0">{{ total_orders }}</h3>
+                    <p class="mb-0 text-success small mt-1">
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
+            
             <div class="col-md-6 h-100">
-              <div class="card shadow-sm border-0 h-100">
+              <div class="card shadow-sm border-0 h-100 kpi-card">
                 <div class="card-body d-flex align-items-center">
-                  <div class="icon bg-info text-white rounded-circle me-3 p-3">
-                    <i class="fas fa-shopping-cart"></i>
+                  <div class="icon bg-warning bg-opacity-10 text-warning rounded-circle me-3 p-3">
                   </div>
                   <div>
-                    <p class="mb-1 text-muted">Total Orders</p>
-                    <h4 class="mb-0">{{ total_orders }}</h4>
+                    <p class="mb-1 text-muted small">Low Stock Products</p>
+                    <h3 class="mb-0">{{ low_stock_products }}</h3>
+                    <p class="mb-0 text-danger small mt-1">
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
+            
             <div class="col-md-6 h-100">
-              <div class="card shadow-sm border-0 h-100">
+              <div class="card shadow-sm border-0 h-100 kpi-card">
                 <div class="card-body d-flex align-items-center">
-                  <div class="icon bg-dark text-white rounded-circle me-3 p-3">
-                    <i class="fas fa-users"></i>
+                  <div class="icon bg-danger bg-opacity-10 text-danger rounded-circle me-3 p-3">
                   </div>
                   <div>
-                    <p class="mb-1 text-muted">Total Customers</p>
-                    <h4 class="mb-0">{{ total_customers }}</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 h-100">
-              <div class="card shadow-sm border-0 h-100">
-                <div class="card-body d-flex align-items-center">
-                  <div class="icon bg-warning text-dark rounded-circle me-3 p-3">
-                    <i class="fas fa-exclamation-triangle"></i>
-                  </div>
-                  <div>
-                    <p class="mb-1 text-muted">Low Stock Products</p>
-                    <h4 class="mb-0">{{ low_stock_products }}</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 h-100">
-              <div class="card shadow-sm border-0 h-100">
-                <div class="card-body d-flex align-items-center">
-                  <div class="icon bg-danger text-white rounded-circle me-3 p-3">
-                    <i class="fas fa-clock"></i>
-                  </div>
-                  <div>
-                    <p class="mb-1 text-muted">Pending Orders</p>
-                    <h4 class="mb-0">{{ pending_orders }}</h4>
+                    <p class="mb-1 text-muted small">Pending Orders</p>
+                    <h3 class="mb-0">{{ pending_orders }}</h3>
+                    <p class="mb-0 text-warning small mt-1">
+                    </p>
                   </div>
                 </div>
               </div>
@@ -109,9 +106,11 @@
       <div class="row mt-5">
         <div class="col-12">
           <div class="card shadow-sm border-0">
+            <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center pt-5">
+              <h4 class="card-title mb-0">Recent Orders</h4>
+            </div>
             <div class="card-body">
-              <h4 class="card-title mb-3">Recent Orders</h4>
-              <div class="table-responsive">
+              <div class="table">
                 <table id="ordersTable" class="table table-hover align-middle">
                   <thead class="table-light">
                     <tr>
@@ -125,21 +124,28 @@
                   <tbody>
                     {% for order in orders %}
                     <tr>
-                      <td>{{ order.product_id.name}}</td>
-                      <td>{{ order.product_id.category}}</td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div>
+                            <div class="fw-semibold">{{ order.product_id.name}}</div>
+                            <small class="text-muted">ID: {{ order.id }}</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-light text-dark">{{ order.product_id.category}}</span></td>
                       <td class="fw-bold">${{ order.product_id.price }}</td>
-                      <td>{{ order.order_date|date:"d/m/Y" }}</td>
+                      <td>{{ order.order_date|date:"M d, Y" }}</td>
                       <td>
                         {% if order.status == 'delivered' %}
-                          <span class="badge rounded-pill bg-success"><i class="fas fa-check-circle me-1"></i> Delivered</span>
+                          <span class="badge rounded-pill bg-success bg-opacity-10 text-success"><i class="fas fa-check-circle me-1"></i> Delivered</span>
                         {% elif order.status == 'pending' %}
-                          <span class="badge rounded-pill bg-warning text-dark"><i class="fas fa-clock me-1"></i> Pending</span>
+                          <span class="badge rounded-pill bg-warning bg-opacity-10 text-warning"><i class="fas fa-clock me-1"></i> Pending</span>
                         {% elif order.status == 'shipped' %}
-                          <span class="badge rounded-pill bg-info"><i class="fas fa-truck me-1"></i> Shipped</span>
+                          <span class="badge rounded-pill bg-info bg-opacity-10 text-info"><i class="fas fa-truck me-1"></i> Shipped</span>
                         {% elif order.status == 'cancelled' %}
-                          <span class="badge rounded-pill bg-danger"><i class="fas fa-times-circle me-1"></i> Cancelled</span>
+                          <span class="badge rounded-pill bg-danger bg-opacity-10 text-danger"><i class="fas fa-times-circle me-1"></i> Cancelled</span>
                         {% else %}
-                          <span class="badge rounded-pill bg-secondary">{{ order.status }}</span>
+                          <span class="badge rounded-pill bg-secondary bg-opacity-10 text-secondary">{{ order.status }}</span>
                         {% endif %}
                       </td>
                     </tr>
@@ -158,17 +164,44 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       const chartData = JSON.parse('{{ chart_data|escapejs }}');
+      
+      // Enhance chart data with better colors
+      const enhancedColors = [
+        'rgba(103, 58, 183, 0.8)',  // Purple
+        'rgba(33, 150, 243, 0.8)',  // Blue
+        'rgba(0, 188, 212, 0.8)',   // Light Blue
+        'rgba(255, 193, 7, 0.8)',   // Amber
+        'rgba(205, 220, 57, 0.8)',  // Lime
+        'rgba(156, 39, 176, 0.8)',  // Deep Purple
+        'rgba(255, 87, 34, 0.8)',   // Deep Orange
+        'rgba(121, 85, 72, 0.8)'    // Brown
+      ];
+      
+      // Apply enhanced colors to chart data
+      chartData.datasets[0].backgroundColor = enhancedColors;
+      chartData.datasets[0].borderColor = 'rgba(255, 255, 255, 0.8)';
+      chartData.datasets[0].borderWidth = 2;
+      
       new Chart(document.getElementById('pieChart'), {
         type: 'doughnut',
         data: chartData,
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          cutout: '60%',
+          cutout: '65%',
           plugins: {
             legend: {
-              position: 'bottom'
+              position: 'bottom',
+              labels: {
+                padding: 20,
+                usePointStyle: true,
+                pointStyle: 'circle'
+              }
             }
+          },
+          animation: {
+            animateScale: true,
+            animateRotate: true
           }
         }
       });
@@ -182,26 +215,101 @@
       $(document).ready(function () {
         $('#ordersTable').DataTable({
           pageLength: 10,
-          ordering: false,
-          searching: true
+          ordering: true,
+          order: [[3, 'desc']],
+          searching: true,
+          language: {
+            search: "",
+            searchPlaceholder: "Search orders...",
+            lengthMenu: "Show _MENU_ entries",
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+            paginate: {
+              previous: "<i class='fas fa-chevron-left'></i>",
+              next: "<i class='fas fa-chevron-right'></i>"
+            }
+          },
+          dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rt<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>'
         });
+        
+        // Style the search input
+        $('.dataTables_filter input').addClass('form-control');
+        $('.dataTables_length select').addClass('form-select');
       });
     </script>
 
     <!-- Dashboard CSS -->
     <style>
-      .card {
-        border-radius: 1rem !important;
+      :root {
+        --card-radius: 0.875rem;
       }
+      
+      body {
+        background-color: #f8f9fa;
+      }
+      
+      .card {
+        border-radius: var(--card-radius) !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08) !important;
+      }
+      
+      .kpi-card:hover {
+        transform: none;
+      }
+      
       .icon {
         width: 50px;
         height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: all 0.3s ease;
       }
+      
+      .kpi-card:hover .icon {
+        transform: scale(1.1);
+      }
+      
       .table-hover tbody tr:hover {
-        background-color: #f9fafb;
+        background-color: #f8f9fa;
+        transform: scale(1.01);
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      }
+      
+      .badge {
+        font-weight: 500;
+        padding: 0.5em 0.8em;
+      }
+      
+      .product-thumbnail {
+        border: 1px solid #e9ecef;
+      }
+      
+      .card-title {
+        font-weight: 600;
+      }
+      
+      /* Custom scrollbar for table */
+      .table-responsive::-webkit-scrollbar {
+        height: 6px;
+      }
+      
+      .table-responsive::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      
+      .table-responsive::-webkit-scrollbar-thumb {
+        background: #c5c5c5;
+        border-radius: 10px;
+      }
+      
+      .table-responsive::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
       }
     </style>
 
