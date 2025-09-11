@@ -1,19 +1,35 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from .models import Order, Product, Customer
-import plotly.express as px
-import pandas as pd
-from django.db.models import Count
+import json
 
 def index(request):
+    # Get the 10 most recent orders
     orders = Order.objects.order_by('-order_date')[:10]
+    # Prepare data for the pie chart
+    category_data= (
+        Product.objects.values('category')
+        .annotate(count=Count('id'))
+        .order_by('-category')
+    )
+    labels =[item['category'] for item in category_data]
+    data = [item['count'] for item in category_data]
+    chart_data = {
+        "labels": labels,
+        "datasets": [{
+            "label": "Products per Category",
+            "data": data,
+            "backgroundColor": [
+                "#4e79a7", "#f28e2b", "#e15759",
+                "#76b7b2", "#59a14f", "#edc949",
+                "#af7aa1", "#ff9da7", "#9c755f", "#bab0ab"
+            ][:len(labels)],
+        }]
+    }
 
-    data = Product.objects.values('category').annotate(count=Count('id'))
-    df = pd.DataFrame(list(data))
-    fig = px.pie(df, names='category', values='count')
-    graph_json = fig.to_json()
-
+    # Summary statistics
     total_orders = Order.objects.count()
     total_customers = Customer.objects.count()
     total_products = Product.objects.count()
@@ -26,7 +42,7 @@ def index(request):
 
     context = {
         "orders": orders,
-        "graph_json": graph_json
+        "chart_data": json.dumps(chart_data)
         ,"total_orders": total_orders
         ,"total_customers": total_customers
         ,"total_products": total_products
