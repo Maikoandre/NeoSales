@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.hashers import make_password, check_password
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -7,8 +7,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = models.IntegerField(default=0)
     description = models.TextField(blank=True, null=True)
-
-from django.contrib.auth.hashers import make_password, check_password
 
 class Customer(models.Model):
     name = models.CharField(max_length=100)
