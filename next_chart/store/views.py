@@ -55,3 +55,7 @@ def index(request):
 def details(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     return render(request, 'details.html', {'order': order})
+
+def customers(request):
+    customers = Customer.objects.all()
+    return render(request, 'customers.html', {'customers': customers})
