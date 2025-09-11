@@ -88,6 +88,7 @@
                   <thead>
                     <tr>
                       <th>Product</th>
+                      <th>Category</th>
                       <th>Price</th>
                       <th>Date</th>
                       <th>Status</th>
@@ -97,6 +98,7 @@
                     {% for order in orders %}
                     <tr>
                       <td>{{ order.product_id.name}}</td>
+                      <td>{{ order.product_id.category}}</td>
                       <td class="font-weight-bold">${{ order.product_id.price }}</td>
                       <td>{{ order.order_date|date:"d/m/Y" }}</td>
                       <td class="font-weight-medium">
