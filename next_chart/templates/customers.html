@@ -9,45 +9,60 @@
                 <div class="card-body">
                     <h4 class="card-title">Customers form</h4>
                     <p class="card-description">Add Information</p>
-                    <form class="forms-sample">
+                    <form class="forms-sample" method="post">
+                        {% csrf_token %}
                         <div class="form-group">
-                            <label for="exampleInputUsername1">Name</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
+                            <label for="{{ form.name.id_for_label }}">Name</label>
+                            {{ form.name }}
+                            {{ form.name.errors }}
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            <label for="{{ form.email.id_for_label }}">Email address</label>
+                            {{ form.email }}
+                            {{ form.email.errors }}
                         </div>
+                        <div class="form-group">
+                            <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                            {{ form.phone_number }}
+                            {{ form.phone_number.errors }}
+                        </div>
+
                         <p class="card-description">Address</p>
-                         <div class="form-group">
-                            <label for="exampleInputHouseNumber">Number</label>
-                            <input type="number" class="form-control" id="exampleInputHouseNumber" placeholder="Number">
+                        <div class="form-group">
+                            <label for="{{ form.home_number.id_for_label }}">Number</label>
+                            {{ form.home_number }}
+                            {{ form.home_number.errors }}
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputNeighborhood">Neighborhood</label>
-                            <input type="text" class="form-control" id="exampleInputNeighborhood" placeholder="Neighborhood">
+                            <label for="{{ form.neighborhood.id_for_label }}">Neighborhood</label>
+                            {{ form.neighborhood }}
+                            {{ form.neighborhood.errors }}
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputCity">City</label>
-                            <input type="text" class="form-control" id="exampleInputCity" placeholder="City">
+                            <label for="{{ form.city.id_for_label }}">City</label>
+                            {{ form.city }}
+                            {{ form.city.errors }}
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputState">State</label>
-                            <input type="text" class="form-control" id="exampleInputState" placeholder="State">
+                            <label for="{{ form.state.id_for_label }}">State</label>
+                            {{ form.state }}
+                            {{ form.state.errors }}
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                placeholder="Password">
+                            <label for="{{ form.password.id_for_label }}">Password</label>
+                            {{ form.password }}
+                            {{ form.password.errors }}
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                            <input type="password" class="form-control" id="exampleInputConfirmPassword1"
-                                placeholder="Password">
+                            <label for="{{ form.confirm_password.id_for_label }}">Confirm Password</label>
+                            {{ form.confirm_password }}
+                            {{ form.confirm_password.errors }}
                         </div>
+
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
+                        <button type="reset" class="btn btn-light">Cancel</button>
                     </form>
+
                 </div>
             </div>
         </div>

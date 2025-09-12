@@ -1,17 +1,16 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Count
-from django.shortcuts import get_object_or_404
 from .models import Order, Product, Customer
 import json
+from .forms import CustomerForm
 
 def index(request):
     # Get the 10 most recent orders
     orders = Order.objects.order_by('-order_date')[:10]
     # Prepare data for the pie chart
     category_data= (
-        Product.objects.values('category')
-        .annotate(count=Count('id'))
+        Product.objects.values('category') \
+        .annotate(count=Count('id')) \
         .order_by('-category')
     )
     labels =[item['category'] for item in category_data]
@@ -56,6 +55,13 @@ def details(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     return render(request, 'details.html', {'order': order})
 
-def customers(request):
-    customers = Customer.objects.all()
-    return render(request, 'customers.html', {'customers': customers})
+def register_customers(request):
+    if request.method == "POST":
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('register_customers')
+    else:
+        form = CustomerForm()
+        
+    return render(request, 'customers.html', {'form': form})
