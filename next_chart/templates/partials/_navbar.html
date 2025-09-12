@@ -1,86 +1,87 @@
-<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-    <a class="navbar-brand brand-logo me-5" href="../index.html"><img src="../assets/images/logo.svg" class="me-2" alt="Admin Dashboard" /></a>
-    <a class="navbar-brand brand-logo-mini" href="../index.html"><img src="../assets/images/logo-mini.svg" alt="Admin Dashboard" /></a>
-  </div>
-  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-      <span class="icon-menu"></span>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+      
+      <span class="fw-bold d-none d-md-inline">Admin Dashboard</span>
+    </a>
+    <a class="navbar-brand d-md-none" href="{% url 'index' %}">
+      <img src="../assets/images/logo-mini.svg" alt="Mini Logo" height="36">
+    </a>
+
+    <!-- Toggler for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <ul class="navbar-nav mr-lg-2">
-      <li class="nav-item nav-search d-none d-lg-block">
-        <div class="input-group">
-          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-            <span class="input-group-text" id="search">
-              <i class="icon-search"></i>
-            </span>
-          </div>
-          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav navbar-nav-right">
-      <li class="nav-item dropdown">
-        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-          <i class="icon-bell mx-0"></i>
-          <span class="count"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-          <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <div class="preview-icon bg-success">
-                <i class="ti-info-alt mx-0"></i>
-              </div>
-            </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">Application Error</h6>
-              <p class="font-weight-light small-text mb-0 text-muted"> Just now </p>
-            </div>
+
+    <!-- Navbar content -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+      <ul class="navbar-nav align-items-center">
+
+        <!-- Notifications -->
+        <li class="nav-item dropdown me-3">
+          <a class="nav-link position-relative" href="#" id="notificationDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-bell fs-5"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
           </a>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <div class="preview-icon bg-warning">
-                <i class="ti-settings mx-0"></i>
-              </div>
-            </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">Settings</h6>
-              <p class="font-weight-light small-text mb-0 text-muted"> Private message </p>
-            </div>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="notificationDropdown"
+            style="min-width: 300px;">
+            <li class="dropdown-header fw-bold text-muted">Notifications</li>
+            <li>
+              <a class="dropdown-item d-flex align-items-start" href="#">
+                <div class="bg-success rounded-circle me-3 p-2">
+                  <i class="bi bi-info-circle text-white"></i>
+                </div>
+                <div>
+                  <div class="fw-bold">Application Error</div>
+                  <small class="text-muted">Just now</small>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-start" href="#">
+                <div class="bg-warning rounded-circle me-3 p-2">
+                  <i class="bi bi-gear text-white"></i>
+                </div>
+                <div>
+                  <div class="fw-bold">Settings</div>
+                  <small class="text-muted">Private message</small>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-start" href="#">
+                <div class="bg-info rounded-circle me-3 p-2">
+                  <i class="bi bi-person-plus text-white"></i>
+                </div>
+                <div>
+                  <div class="fw-bold">New user registration</div>
+                  <small class="text-muted">2 days ago</small>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Profile -->
+        <li class="nav-item dropdown me-3">
+          <a class="nav-link d-flex align-items-center" href="#" id="profileDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../assets/images/faces/face28.jpg" alt="profile" class="rounded-circle" height="36">
           </a>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <div class="preview-icon bg-info">
-                <i class="ti-user mx-0"></i>
-              </div>
-            </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">New user registration</h6>
-              <p class="font-weight-light small-text mb-0 text-muted"> 2 days ago </p>
-            </div>
-          </a>
-        </div>
-      </li>
-      <li class="nav-item nav-profile dropdown">
-        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-          <img src="../assets/images/faces/face28.jpg" alt="profile" />
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item">
-            <i class="ti-settings text-primary"></i> Settings </a>
-          <a class="dropdown-item">
-            <i class="ti-power-off text-primary"></i> Logout </a>
-        </div>
-      </li>
-      <li class="nav-item nav-settings d-none d-lg-flex">
-        <a class="nav-link" href="#">
-          <i class="icon-ellipsis"></i>
-        </a>
-      </li>
-    </ul>
-    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-      <span class="icon-menu"></span>
-    </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2 text-primary"></i>Settings</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2 text-primary"></i>Logout</a></li>
+          </ul>
+        </li>
+
+        <!-- Settings / ellipsis -->
+        <li class="nav-item d-none d-lg-block">
+          <a class="nav-link" href="#"><i class="bi bi-three-dots fs-5"></i></a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

@@ -18,22 +18,27 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{% url 'register_customers' %}">Customers</a></li>
           <li class="nav-item"> <a class="nav-link" href="{% url 'register_products' %}">Products</a></li>
-          <li class="nav-item"> <a class="nav-link" href="../pages/ui-features/typography.html">Orders</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'register_orders' %}">Orders</a></li>
         </ul>
       </div>
     </li>
-    <!-- <li class="nav-item">
+    
+    <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
         <i class="icon-columns menu-icon"></i>
-        <span class="menu-title">Form elements</span>
+        <span class="menu-title">Management</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="../pages/forms/basic_elements.html">Basic Elements</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'manage_customers' %}">Customers</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'register_products' %}">Products</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'register_orders' %}">Orders</a></li>
         </ul>
       </div>
     </li>
+
+    <!--
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
         <i class="icon-bar-graph menu-icon"></i>
@@ -101,6 +106,6 @@
         <i class="icon-paper menu-icon"></i>
         <span class="menu-title">Documentation</span>
       </a>
-    </li> -->
-  </ul>
+    </li> 
+  </ul> -->
 </nav>

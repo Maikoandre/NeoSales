@@ -2,11 +2,10 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Count
 from .models import Order, Product, Customer
 import json
-from .forms import CustomerForm, ProductForm
+from .forms import CustomerForm, ProductForm, OrderForm
 
 def index(request):
-    # Get the 10 most recent orders
-    orders = Order.objects.order_by('-order_date')[:10]
+    orders = Order.objects.order_by('-order_date')
     # Prepare data for the pie chart
     category_data= (
         Product.objects.values('category') \
@@ -81,3 +80,43 @@ def register_products(request):
         form = ProductForm()
         
     return render(request, 'forms/products.html', {'form': form})
+
+def register_orders(request):
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            Order.objects.create(
+                amount=form.cleaned_data['amount'],
+                customer_id=form.cleaned_data['customer_id'],
+                product_id=form.cleaned_data['product_id'],
+                status=form.cleaned_data['status'],
+                notes=form.cleaned_data.get('notes', '')
+            )
+            return redirect('register_orders')
+    else:
+        form = OrderForm()
+        
+    return render(request, 'forms/orders.html', {'form': form})
+
+def manage_customers(request):
+    customers = Customer.objects.all()
+    return render(request, 'management/manage_customers.html', {'customers': customers})
+
+def update_customer(request, id):
+    customer = get_object_or_404(Customer, id=id)
+
+    if request.method == "POST":
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_customers')
+    else:
+        form = CustomerForm(instance=customer)
+
+    return render(request, 'management/update_customer.html', {'form': form})
+
+def delete_customer(request, id):
+    if request.method == "POST":
+        customer = get_object_or_404(Customer, id=id)
+        customer.delete()
+    return redirect('manage_customers')

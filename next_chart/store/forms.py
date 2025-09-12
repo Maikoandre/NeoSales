@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customer, Product
+from .models import Customer, Product, Order
 
 class CustomerForm(forms.ModelForm):
     password = forms.CharField(
@@ -80,3 +80,36 @@ class ProductForm(forms.Form):
         )
         product.save()
         return product
+    
+class OrderForm(forms.Form):
+    amount = forms.IntegerField(
+        widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "Amount"})
+    )
+    customer_id = forms.ModelChoiceField(
+        queryset=Customer.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"})
+    )
+    product_id = forms.ModelChoiceField(
+        queryset=Product.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"})
+    )
+    status = forms.ChoiceField(
+        choices=[('pending', 'Pending'), ('shipped', 'Shipped'), ('delivered', 'Delivered'), ('canceled', 'Canceled')],
+        widget=forms.Select(attrs={"class": "form-control"})
+    )
+    notes = forms.CharField(
+        required=False,
+        widget=forms.Textarea(attrs={"class": "form-control", "placeholder": "Notes", "rows": 3})
+    )
+
+    def save(self):
+        data = self.cleaned_data
+        order = Order(
+            amount=data['amount'],
+            customer_id=data['customer_id'],
+            product_id=data['product_id'],
+            status=data['status'],
+            notes=data.get('notes', '')
+        )
+        order.save()
+        return order

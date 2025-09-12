@@ -8,6 +8,9 @@ class Product(models.Model):
     stock_quantity = models.IntegerField(default=0)
     description = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 class Customer(models.Model):
     name = models.CharField(max_length=100)
     home_number = models.IntegerField()
@@ -17,7 +20,7 @@ class Customer(models.Model):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=20, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
-    password = models.CharField(max_length=128)  # store hashed password
+    password = models.CharField(max_length=128)
 
     def set_password(self, raw_password):
         """Hashes and sets the password"""
@@ -26,7 +29,9 @@ class Customer(models.Model):
     def check_password(self, raw_password):
         """Checks if the raw password matches the stored hash"""
         return check_password(raw_password, self.password)
-
+    
+    def __str__(self):
+        return self.name
 
 class Order(models.Model):
     amount = models.IntegerField()
