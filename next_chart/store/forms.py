@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customer
+from .models import Customer, Product
 
 class CustomerForm(forms.ModelForm):
     password = forms.CharField(
@@ -70,7 +70,6 @@ class ProductForm(forms.Form):
     )
 
     def save(self):
-        from .models import Product  # Importing here to avoid circular imports
         data = self.cleaned_data
         product = Product(
             name=data['name'],

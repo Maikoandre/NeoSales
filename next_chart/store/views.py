@@ -64,7 +64,7 @@ def register_customers(request):
     else:
         form = CustomerForm()
         
-    return render(request, 'customers.html', {'form': form})
+    return render(request, 'forms/customers.html', {'form': form})
 
 def register_products(request):
     if request.method == "POST":
@@ -80,4 +80,4 @@ def register_products(request):
     else:
         form = ProductForm()
         
-    return render(request, 'products.html', {'form': form})
+    return render(request, 'forms/products.html', {'form': form})
