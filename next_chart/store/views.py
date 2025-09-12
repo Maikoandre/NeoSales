@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Count
 from .models import Order, Product, Customer
 import json
-from .forms import CustomerForm
+from .forms import CustomerForm, ProductForm
 
 def index(request):
     # Get the 10 most recent orders
@@ -65,3 +65,19 @@ def register_customers(request):
         form = CustomerForm()
         
     return render(request, 'customers.html', {'form': form})
+
+def register_products(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            Product.objects.create(
+                name=form.cleaned_data['name'],
+                category=form.cleaned_data['category'],
+                price=form.cleaned_data['price'],
+                stock_quantity=form.cleaned_data['stock_quantity']
+            )
+            return redirect('register_products')
+    else:
+        form = ProductForm()
+        
+    return render(request, 'products.html', {'form': form})

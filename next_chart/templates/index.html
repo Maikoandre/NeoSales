@@ -119,32 +119,56 @@
           </div>
         </div>
       </div>
-
     </div>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <table id="myTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>City</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John</td>
+          <td>john@example.com</td>
+          <td>NY</td>
+        </tr>
+      </tbody>
+    </table>
+
     <script>
-      const chartData = JSON.parse('{{ chart_data|escapejs }}');
-      new Chart(document.getElementById('pieChart'), {
-        type: 'pie',
-        data: chartData,
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: {
-            duration: 1000,          // how long (ms)
-            easing: 'easeInOutQuad'  // smoother easing (no bounce)
-          },
-          plugins: {
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }
+      $(document).ready(function () {
+        $('#myTable').DataTable();
       });
     </script>
 
-    <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  </div>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const chartData = JSON.parse('{{ chart_data|escapejs }}');
+    new Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: chartData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 1000,          // how long (ms)
+          easing: 'easeInOutQuad'  // smoother easing (no bounce)
+        },
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  </script>
+
+  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
       var graph = JSON.parse('{{ graph_json|escapejs }}');
       Plotly.newPlot('pieChart', graph.data, graph.layout);

@@ -46,3 +46,38 @@ class CustomerForm(forms.ModelForm):
         if commit:
             customer.save()
         return customer
+
+class ProductForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Product Name"})
+    )
+    category = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Category"})
+    )
+    price = forms.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "Price"})
+    )
+    stock_quantity = forms.IntegerField(
+        widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "Stock Quantity"})
+    )
+    description = forms.CharField(
+        required=False,
+        widget=forms.Textarea(attrs={"class": "form-control", "placeholder": "Description", "rows": 3})
+    )
+
+    def save(self):
+        from .models import Product  # Importing here to avoid circular imports
+        data = self.cleaned_data
+        product = Product(
+            name=data['name'],
+            category=data['category'],
+            price=data['price'],
+            stock_quantity=data['stock_quantity'],
+            description=data.get('description', '')
+        )
+        product.save()
+        return product
