@@ -2,6 +2,8 @@
 
 This is a **Django-based e-commerce web application** with features for managing products, customers, and orders. The project is designed to demonstrate a e-commerce workflow, including authentication, CRUD operations, and an admin-friendly dashboard with modern UI components.
 
+![Dashboard Screenshot](./static/assets/images/neosales01.png)
+
 ---
 
 ## 📂 Project Structure
@@ -65,9 +67,6 @@ python3 data_seed.py
 ```bash
 python3 manage.py runserver
 ```
-## 📸 Screenshots
-
-
 
 ## 🧑‍💻 Tech Stack
 
