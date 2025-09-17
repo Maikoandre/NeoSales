@@ -1,6 +1,11 @@
 # 🛒 Neosales E-Commerce Project
 
-This is a **Django-based e-commerce web application** with features for managing products, customers, and orders. The project is designed to demonstrate a e-commerce workflow, including authentication, CRUD operations, and an admin-friendly dashboard with modern UI components.
+A **Django-based e-commerce web application** built to manage **products, customers, and orders**.  
+The project demonstrates a full **e-commerce workflow**, including:
+
+- 🔑 **Authentication** (Login & Registration)  {To be made}
+- 📝 **CRUD operations** for products, customers, and orders  
+- 📊 **Admin-friendly dashboard** with modern UI components  
 
 ![Dashboard Screenshot](./static/assets/images/neosales01.png)
 
@@ -8,16 +13,35 @@ This is a **Django-based e-commerce web application** with features for managing
 
 ## 📂 Project Structure
 
-.<br>
-├── ecommerce/ # Main Django project settings and configs <br>
-├── store/ # Store app: models, views, forms, and URLs<br>
-├── templates/ # HTML templates for pages and partials<br>
-├── static/ # CSS, JS, images, fonts, and vendor assets<br>
-├── db.sqlite3 # SQLite database<br>
-├── data_seed.py # Script to seed initial data<br>
-├── manage.py # Django management CLI<br>
-└── README.md # Project documentation<br>
 
+.
+├── ecommerce/                 # Main Django project (settings, configs, WSGI/ASGI)
+│   ├── __init__.py
+│   ├── settings.py           # Project settings and configuration
+│   ├── urls.py               # Main URL routing
+│   └── wsgi.py
+├── store/                     # Core store application
+│   ├── migrations/           # Database migrations
+│   ├── models.py             # Data models (Product, Customer, Order)
+│   ├── views.py              # Business logic and view handlers
+│   ├── forms.py              # Django forms for data validation
+│   ├── urls.py               # App-specific URL routes
+│   └── admin.py              # Admin panel configuration
+├── templates/                 # HTML templates
+│   ├── base.html             # Base template structure
+│   ├── partials/             # Reusable template components
+│   └── pages/                # Individual page templates
+├── static/                    # Static assets
+│   ├── css/                  # Compiled CSS and SCSS files
+│   ├── js/                   # JavaScript functionality
+│   ├── images/               # Product images and UI assets
+│   ├── fonts/                # Custom typography
+│   └── vendor/               # Third-party libraries (Bootstrap, etc.)
+├── db.sqlite3                # SQLite database (development)
+├── data_seed.py              # Initial data population script
+├── manage.py                 # Django management CLI
+├── requirements.txt          # Python dependencies
+└── README.md                 # Project documentation
 
 
 ---
