@@ -120,3 +120,49 @@ def delete_customer(request, id):
         customer = get_object_or_404(Customer, id=id)
         customer.delete()
     return redirect('manage_customers')
+
+def manage_products(request):
+    products = Product.objects.all()
+    return render(request, 'management/manage_products.html', {'products': products})
+
+def update_product(request, id):
+    product = get_object_or_404(Product, id=id)
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_products')
+    else:
+        form = ProductForm(instance=product)
+
+    return render(request, 'management/update_product.html', {'form': form})
+
+def delete_product(request, id):
+    if request.method == "POST":
+        product = get_object_or_404(Product, id=id)
+        product.delete()
+    return redirect('manage_products')
+
+def manage_orders(request):
+    orders = Order.objects.all()
+    return render(request, 'management/manage_orders.html', {'orders': orders})
+
+def update_order(request, id):
+    order = get_object_or_404(Order, id=id)
+
+    if request.method == "POST":
+        form = OrderForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_orders')
+    else:
+        form = OrderForm(instance=order)
+
+    return render(request, 'management/update_order.html', {'form': form})
+
+def delete_order(request, id):
+    if request.method == "POST":
+        order = get_object_or_404(Order, id=id)
+        order.delete()
+    return redirect('manage_orders')
