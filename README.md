@@ -71,11 +71,11 @@ python3 manage.py runserver
 
 ## 🧑‍💻 Tech Stack
 
-Backend: Django (Python)
+- **Backend**: Django (Python)
 
-Frontend: HTML, SCSS, Bootstrap, JS
+- **Frontend**: HTML, SCSS, Bootstrap, JS
 
-Database: SQLite (default, but easily swappable to PostgreSQL/MySQL)
+- **Database**: SQLite (default, but easily swappable to PostgreSQL/MySQL)
 
-Task Runner: Gulp (for static asset management)
+- **Task Runner**: Gulp (for static asset management)
 
