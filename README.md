@@ -14,34 +14,34 @@ The project demonstrates a full **e-commerce workflow**, including:
 ## 📂 Project Structure
 
 
-.
-├── ecommerce/                 # Main Django project (settings, configs, WSGI/ASGI)
-│   ├── __init__.py
-│   ├── settings.py           # Project settings and configuration
-│   ├── urls.py               # Main URL routing
-│   └── wsgi.py
-├── store/                     # Core store application
-│   ├── migrations/           # Database migrations
-│   ├── models.py             # Data models (Product, Customer, Order)
-│   ├── views.py              # Business logic and view handlers
-│   ├── forms.py              # Django forms for data validation
-│   ├── urls.py               # App-specific URL routes
-│   └── admin.py              # Admin panel configuration
-├── templates/                 # HTML templates
-│   ├── base.html             # Base template structure
-│   ├── partials/             # Reusable template components
-│   └── pages/                # Individual page templates
-├── static/                    # Static assets
-│   ├── css/                  # Compiled CSS and SCSS files
-│   ├── js/                   # JavaScript functionality
-│   ├── images/               # Product images and UI assets
-│   ├── fonts/                # Custom typography
-│   └── vendor/               # Third-party libraries (Bootstrap, etc.)
-├── db.sqlite3                # SQLite database (development)
-├── data_seed.py              # Initial data population script
-├── manage.py                 # Django management CLI
-├── requirements.txt          # Python dependencies
-└── README.md                 # Project documentation
+.<br>
+├── ecommerce/                 # Main Django project (settings, configs, WSGI/ASGI)<br>
+│   ├── __init__.py<br>
+│   ├── settings.py           # Project settings and configuration<br>
+│   ├── urls.py               # Main URL routing<br>
+│   └── wsgi.py<br>
+├── store/                     # Core store application<br>
+│   ├── migrations/           # Database migrations<br>
+│   ├── models.py             # Data models (Product, Customer, Order)<br>
+│   ├── views.py              # Business logic and view handlers<br>
+│   ├── forms.py              # Django forms for data validation<br>
+│   ├── urls.py               # App-specific URL routes<br>
+│   └── admin.py              # Admin panel configuration<br>
+├── templates/                 # HTML templates<br>
+│   ├── base.html             # Base template structure<br>
+│   ├── partials/             # Reusable template components<br>
+│   └── pages/                # Individual page templates<br>
+├── static/                    # Static assets<br>
+│   ├── css/                  # Compiled CSS and SCSS files<br>
+│   ├── js/                   # JavaScript functionality<br>
+│   ├── images/               # Product images and UI assets<br>
+│   ├── fonts/                # Custom typography<br>
+│   └── vendor/               # Third-party libraries (Bootstrap, etc.)<br>
+├── db.sqlite3                # SQLite database (development)<br>
+├── data_seed.py              # Initial data population script<br>
+├── manage.py                 # Django management CLI<br>
+├── requirements.txt          # Python dependencies<br>
+└── README.md                 # Project documentation<br>
 
 
 ---
