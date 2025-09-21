@@ -47,7 +47,7 @@ class CustomerForm(forms.ModelForm):
             customer.save()
         return customer
 
-class ProductForm(forms.Form):
+class ProductForm(forms.ModelForm):
     name = forms.CharField(
         max_length=100,
         widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Product Name"})
@@ -81,7 +81,7 @@ class ProductForm(forms.Form):
         product.save()
         return product
     
-class OrderForm(forms.Form):
+class OrderForm(forms.ModelForm):
     amount = forms.IntegerField(
         widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "Amount"})
     )
@@ -113,3 +113,15 @@ class OrderForm(forms.Form):
         )
         order.save()
         return order
+    
+    class Meta:
+        model = Order
+        fields = ['amount', 'customer_id', 'product_id', 'status', 'notes'] 
+        widgets = {
+            'amount': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Amount'}),
+            'customer_id': forms.Select(attrs={'class': 'form-control'}),
+            'product_id': forms.Select(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+            'notes': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Notes', 'rows': 3}),
+        }
+        

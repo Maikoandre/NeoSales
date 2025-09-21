@@ -156,9 +156,6 @@ def update_order(request, id):
         if form.is_valid():
             form.save()
             return redirect('manage_orders')
-    else:
-        form = OrderForm(instance=order)
-
     return render(request, 'management/update_order.html', {'form': form})
 
 def delete_order(request, id):
