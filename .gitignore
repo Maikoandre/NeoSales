@@ -5,6 +5,11 @@ build/
 dist/
 wheels/
 *.egg-info
+db/
+db.sqlite3
+repomix-output.xml
+.python-version
+main.py
 
 # Virtual environments
 .venv
