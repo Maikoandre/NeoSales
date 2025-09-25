@@ -109,11 +109,12 @@ def update_customer(request, id):
         form = CustomerForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
-            return redirect('manage_customers')
+            return redirect('manage_customers')  # ajuste para o nome da sua URL
     else:
         form = CustomerForm(instance=customer)
 
-    return render(request, 'management/update_customer.html', {'form': form})
+    return render(request, 'management/update_customer.html', {'form': form, 'customer': customer})
+
 
 def delete_customer(request, id):
     if request.method == "POST":
@@ -136,13 +137,17 @@ def update_product(request, id):
     else:
         form = ProductForm(instance=product)
 
-    return render(request, 'management/update_product.html', {'form': form})
+    return render(request, 'management/update_product.html', {'form': form, 'product': product})
+
 
 def delete_product(request, id):
+    product = get_object_or_404(Product, id=id)
     if request.method == "POST":
-        product = get_object_or_404(Product, id=id)
         product.delete()
-    return redirect('manage_products')
+        return redirect('manage_products')
+
+    # caso queira pedir confirmação antes de deletar:
+    return render(request, 'management/confirm_delete_product.html', {'product': product})
 
 def manage_orders(request):
     orders = Order.objects.all()
@@ -151,12 +156,16 @@ def manage_orders(request):
 def update_order(request, id):
     order = get_object_or_404(Order, id=id)
 
-    if request.method == "POST":
+    if request.method == 'POST':
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
-            return redirect('manage_orders')
-    return render(request, 'management/update_order.html', {'form': form})
+            return redirect('manage_orders')  # ajuste para a named URL correta
+    else:
+        form = OrderForm(instance=order)
+
+    return render(request, 'management/update_order.html', {'form': form, 'order': order})
+
 
 def delete_order(request, id):
     if request.method == "POST":
