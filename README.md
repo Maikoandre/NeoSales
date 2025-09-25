@@ -12,7 +12,7 @@ The project demonstrates a full **e-commerce workflow**, including:
 
 ## 📂 Project Structure
 
-
+```bash
 .<br>
 ├── ecommerce/                 # Main Django project (settings, configs, WSGI/ASGI)<br>
 ├── store/                     # Core store application<br>
@@ -23,7 +23,7 @@ The project demonstrates a full **e-commerce workflow**, including:
 ├── manage.py                 # Django management CLI<br>
 ├── requirements.txt          # Python dependencies<br>
 └── README.md                 # Project documentation<br>
-
+```
 ---
 
 ## 🚀 Features
