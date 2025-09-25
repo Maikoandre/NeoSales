@@ -61,33 +61,17 @@ The project demonstrates a full **e-commerce workflow**, including:
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/Maikoandre/neosales.git
-cd django-ecommerce
+cd neosales
 ```
 
-### 2. Create and Activate a Virtual Environment
+### 2. Activate Docker Environment (You need to have docker installed)
 ```bash
-python3 -m venv venv
-source venv/bin/activate   # For Linux/macOS
-venv\Scripts\activate      # For Windows
+docker compose up -d
 ```
 
-### 3. Install Dependencies
+### 3. Access the site
 ```bash
-pip install django
-```
-
-### 4. Run Database Migrations
-```bash
-python3 manage.py migrate
-```
-### 5. Seed the Database (Optional)
-```bash
-python3 data_seed.py
-```
-
-### 6. Run Development Server
-```bash
-python3 manage.py runserver
+http://127.0.0.1:8000/
 ```
 
 ## 🧑‍💻 Tech Stack
@@ -96,7 +80,6 @@ python3 manage.py runserver
 
 - **Frontend**: HTML, SCSS, Bootstrap, JS
 
-- **Database**: SQLite (default, but easily swappable to PostgreSQL/MySQL)
+- **Database**: SQLite
 
-- **Task Runner**: Gulp (for static asset management)
 
