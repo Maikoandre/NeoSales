@@ -15,33 +15,14 @@ The project demonstrates a full **e-commerce workflow**, including:
 
 .<br>
 ├── ecommerce/                 # Main Django project (settings, configs, WSGI/ASGI)<br>
-│   ├── __init__.py<br>
-│   ├── settings.py           # Project settings and configuration<br>
-│   ├── urls.py               # Main URL routing<br>
-│   └── wsgi.py<br>
 ├── store/                     # Core store application<br>
-│   ├── migrations/           # Database migrations<br>
-│   ├── models.py             # Data models (Product, Customer, Order)<br>
-│   ├── views.py              # Business logic and view handlers<br>
-│   ├── forms.py              # Django forms for data validation<br>
-│   ├── urls.py               # App-specific URL routes<br>
-│   └── admin.py              # Admin panel configuration<br>
 ├── templates/                 # HTML templates<br>
-│   ├── base.html             # Base template structure<br>
-│   ├── partials/             # Reusable template components<br>
-│   └── pages/                # Individual page templates<br>
 ├── static/                    # Static assets<br>
-│   ├── css/                  # Compiled CSS and SCSS files<br>
-│   ├── js/                   # JavaScript functionality<br>
-│   ├── images/               # Product images and UI assets<br>
-│   ├── fonts/                # Custom typography<br>
-│   └── vendor/               # Third-party libraries (Bootstrap, etc.)<br>
 ├── db.sqlite3                # SQLite database (development)<br>
 ├── data_seed.py              # Initial data population script<br>
 ├── manage.py                 # Django management CLI<br>
 ├── requirements.txt          # Python dependencies<br>
 └── README.md                 # Project documentation<br>
-
 
 ---
 
@@ -81,5 +62,3 @@ http://127.0.0.1:8000/
 - **Frontend**: HTML, SCSS, Bootstrap, JS
 
 - **Database**: SQLite
-
-
