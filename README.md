@@ -3,7 +3,6 @@
 A **Django-based e-commerce web application** built to manage **products, customers, and orders**.  
 The project demonstrates a full **e-commerce workflow**, including:
 
-- 🔑 **Authentication** (Login & Registration)  {To be made}
 - 📝 **CRUD operations** for products, customers, and orders  
 - 📊 **Admin-friendly dashboard** with modern UI components  
 
@@ -51,7 +50,6 @@ The project demonstrates a full **e-commerce workflow**, including:
 - **Product Management**: Add, update, delete, and view product listings.  
 - **Customer Management**: Register customers, view details, and manage records.  
 - **Order Management**: Track and update order statuses.  
-- **Authentication**: User login and registration. 
 - **Admin Dashboard**: Styled UI with charts, tables, and forms.  
 - **Responsive UI**: Built with SCSS, Bootstrap, and vendor libraries.  
 - **Seed Data**: Preload sample products and customers using `data_seed.py`.  
