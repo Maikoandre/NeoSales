@@ -60,8 +60,8 @@ The project demonstrates a full **e-commerce workflow**, including:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Maikoandre/neosales.git
-cd neosales
+git clone https://github.com/Maikoandre/NeoSales.git
+cd NeoSales
 ```
 
 ### 2. Activate Docker Environment (You need to have docker installed)
