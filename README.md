@@ -14,15 +14,15 @@ The project demonstrates a full **e-commerce workflow**, including:
 
 ```bash
 .<br>
-├── ecommerce/                 # Main Django project (settings, configs, WSGI/ASGI)<br>
-├── store/                     # Core store application<br>
-├── templates/                 # HTML templates<br>
-├── static/                    # Static assets<br>
-├── db.sqlite3                # SQLite database (development)<br>
-├── data_seed.py              # Initial data population script<br>
-├── manage.py                 # Django management CLI<br>
-├── requirements.txt          # Python dependencies<br>
-└── README.md                 # Project documentation<br>
+├── ecommerce/                 # Main Django project (settings, configs, WSGI/ASGI)
+├── store/                     # Core store application
+├── templates/                 # HTML templates
+├── static/                    # Static assets
+├── db.sqlite3                # SQLite database (development)
+├── data_seed.py              # Initial data population script
+├── manage.py                 # Django management CLI
+├── requirements.txt          # Python dependencies
+└── README.md                 # Project documentation
 ```
 ---
 
