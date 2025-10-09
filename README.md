@@ -13,7 +13,7 @@ The project demonstrates a full **e-commerce workflow**, including:
 ## 📂 Project Structure
 
 ```bash
-.<br>
+NeoSales
 ├── ecommerce/                 # Main Django project (settings, configs, WSGI/ASGI)
 ├── store/                     # Core store application
 ├── templates/                 # HTML templates
