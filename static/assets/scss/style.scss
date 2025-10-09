@@ -4,4 +4,10 @@
 @import "sidebar";
 @import "navbar";
 @import "layouts";
-@import "settings-panel"
+@import "settings-panel";
+
+/* === Custom Styles === */
+body main#index-background {
+  background-color: #0064fa !important; // Mude para a cor que você desejar
+}
+/*-------------------------------------------------------------------*/

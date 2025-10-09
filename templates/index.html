@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<main class="d-flex justify-content-center">
+<main id="index-background" class="d-flex justify-content-center">
   <div class="main-panel w-100">
     <div class="container-fluid content-wrapper">
 
@@ -141,7 +141,7 @@
                         {% elif order.status == 'pending' %}
                           <span class="badge rounded-pill bg-warning bg-opacity-10 text-warning"><i class="fas fa-clock me-1"></i> Pending</span>
                         {% elif order.status == 'shipped' %}
-                          <span class="badge rounded-pill bg-info bg-opacity-10 text-info"><i class="fas fa-truck me-1"></i> Shipped</span>
+                          <span class="badge rounded-pill bg-warning bg-opacity-10 text-info"><i class="fas fa-truck me-1"></i> Shipped</span>
                         {% elif order.status == 'cancelled' %}
                           <span class="badge rounded-pill bg-danger bg-opacity-10 text-danger"><i class="fas fa-times-circle me-1"></i> Cancelled</span>
                         {% else %}

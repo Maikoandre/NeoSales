@@ -117,6 +117,11 @@
 /*-------------------------------------------------------------------*/
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
+/* === Custom Styles === */
+body main#index-background {
+  background-color: #0064fa !important;
+}
+/*-------------------------------------------------------------------*/
 /* === Navbar adjustments === */
 #main-navbar {
     padding-top: 0.1rem !important;    /* Adjust value as needed */
