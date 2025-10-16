@@ -3,10 +3,14 @@ from django.db.models import Count
 from .models import Order, Product, Customer
 import json
 from .forms import CustomerForm, ProductForm, OrderForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='login')
 def index(request):
     orders = Order.objects.order_by('-order_date')
-    # Prepare data for the pie chart
     category_data= (
         Product.objects.values('category') \
         .annotate(count=Count('id')) \
@@ -27,7 +31,6 @@ def index(request):
         }]
     }
 
-    # Summary statistics
     total_orders = Order.objects.count()
     total_customers = Customer.objects.count()
     total_products = Product.objects.count()
@@ -50,10 +53,12 @@ def index(request):
     }
     return render(request, "index.html", context)
 
+@login_required(login_url='login')
 def details(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     return render(request, 'details.html', {'order': order})
 
+@login_required(login_url='login')
 def register_customers(request):
     if request.method == "POST":
         form = CustomerForm(request.POST)
@@ -65,6 +70,7 @@ def register_customers(request):
         
     return render(request, 'forms/customers.html', {'form': form})
 
+@login_required(login_url='login')
 def register_products(request):
     if request.method == "POST":
         form = ProductForm(request.POST)
@@ -81,6 +87,7 @@ def register_products(request):
         
     return render(request, 'forms/products.html', {'form': form})
 
+@login_required(login_url='login')
 def register_orders(request):
     if request.method == "POST":
         form = OrderForm(request.POST)
@@ -98,10 +105,12 @@ def register_orders(request):
         
     return render(request, 'forms/orders.html', {'form': form})
 
+@login_required(login_url='login')
 def manage_customers(request):
     customers = Customer.objects.all()
     return render(request, 'management/manage_customers.html', {'customers': customers})
 
+@login_required(login_url='login')
 def update_customer(request, id):
     customer = get_object_or_404(Customer, id=id)
 
@@ -109,23 +118,25 @@ def update_customer(request, id):
         form = CustomerForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
-            return redirect('manage_customers')  # ajuste para o nome da sua URL
+            return redirect('manage_customers')
     else:
         form = CustomerForm(instance=customer)
 
     return render(request, 'management/update_customer.html', {'form': form, 'customer': customer})
 
-
+@login_required(login_url='login')
 def delete_customer(request, id):
     if request.method == "POST":
         customer = get_object_or_404(Customer, id=id)
         customer.delete()
     return redirect('manage_customers')
 
+@login_required(login_url='login')
 def manage_products(request):
     products = Product.objects.all()
     return render(request, 'management/manage_products.html', {'products': products})
 
+@login_required(login_url='login')
 def update_product(request, id):
     product = get_object_or_404(Product, id=id)
 
@@ -139,20 +150,21 @@ def update_product(request, id):
 
     return render(request, 'management/update_product.html', {'form': form, 'product': product})
 
-
+@login_required(login_url='login')
 def delete_product(request, id):
     product = get_object_or_404(Product, id=id)
     if request.method == "POST":
         product.delete()
         return redirect('manage_products')
 
-    # caso queira pedir confirmação antes de deletar:
     return render(request, 'management/confirm_delete_product.html', {'product': product})
 
+@login_required(login_url='login')
 def manage_orders(request):
     orders = Order.objects.all()
     return render(request, 'management/manage_orders.html', {'orders': orders})
 
+@login_required(login_url='login')
 def update_order(request, id):
     order = get_object_or_404(Order, id=id)
 
@@ -160,15 +172,31 @@ def update_order(request, id):
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
-            return redirect('manage_orders')  # ajuste para a named URL correta
+            return redirect('manage_orders')
     else:
         form = OrderForm(instance=order)
 
     return render(request, 'management/update_order.html', {'form': form, 'order': order})
 
-
+@login_required(login_url='login')
 def delete_order(request, id):
     if request.method == "POST":
         order = get_object_or_404(Order, id=id)
         order.delete()
     return redirect('manage_orders')
+
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.error(request, 'Email ou senha inválidos.')
+    return render(request, 'authentication/login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
